@@ -8,80 +8,138 @@ class KeefCard2 extends LitElement {
   }
 
   static styles = css`
-    :host {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: calc(10px + 2vmin);
-      color: #1a2b42;
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
-      background-color: var(--keef-card2-background-color);
+  .coolawesomebuttons {
+    border: 3.5px solid;
+    background-color: blue;
+  }
+  .dupBtn:focus,.dupBtn:hover {
+    background-color: white;
+    color: blue;
+  }
+  .colorBtn:focus, .colorBtn:hover {
+    background-color: white;
+    color: blue;
+  }
+  .txtBtn:focus, .txtBtn:hover {
+    background-color: white;
+    color: blue;
+  }
+  .deleteBtn:focus, .deleteBtn:hover {
+    background-color: white;
+    color: blue;
+  }
+  
+  .wrapper {
+    display: inline-block;
+    background-color: blue;
+    font-size: 24px;
+    padding: 100px;
+    text-align: center;
+    max-width: 400px;
+    margin: 20px auto;
+    border: 3.5px solid;
+  }
+  .wrapper img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    border: 3.5px solid;
+  }
+  
+  @media only screen and (max-width: 1200px){
+    .wrapper {
+      background-color: pink;
     }
-
-    main {
-      flex-grow: 1;
+  }
+  @media only screen and (max-width: 600px) {
+     .wrapper {
+      background-color: purple;
     }
-
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
+  }
+  @media only screen and (max-width: 425px){
+     .wrapper {
+      font-weight: normal;
     }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
+     .wrapper .header h2 {
+      font-size: 12px;
     }
-
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
+     .wrapper .paragraph p {
+       font-size: 10px !important;
     }
-
-    .app-footer a {
-      margin-left: 5px;
-    }
-  `;
+      wrapper {
+          display: none;
+   }
+  }`
+  ;
 
   constructor() {
     super();
     this.header = 'My app';
   }
 
+  firstUpdated(){
+    const titleBtn = this.shadowRoot.querySelector('.txtBtn');
+    const deleteBtn = this.shadowRoot.querySelector('.deleteBtn');
+    const colorBtn = this.shadowRoot.querySelector('.colorBtn');
+    const cardTitle = this.shadowRoot.querySelector('.header');
+    const card = this.shadowRoot.querySelector('');
+    const clone = card.cloneNode(true);
+    const cards = this.shadowRoot.querySelector('.wrapper');
+    const details = this.shadowRoot.querySelector('');
+    const cardImage = this.shadowRoot.querySelector('img');
+    const cardClone2 = this.shadowRoot.querySelector('.container');
+
+    titleBtn.addEventListener('click', () => {
+      cardTitle.innerHTML = "Chief Keef";
+    });
+
+    deleteBtn.addEventListener('click', () => {
+      cards.removeChild(cardClone2);
+    });
+
+    
+  }
+
+  colorChange(){
+    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor;
+  }
+
+  cloneCard(e){
+    const card = this.shadowRoot.querySelector('.wrapper');
+    const clone = card.cloneNode(true);
+    this.shadowRoot.querySelector('.wrapper').appendChild(clone);
+  }
+
   render() {
     return html`
-      <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
-        <p>Edit <code>src/KeefCard2.js</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
-      </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
-    `;
+    <div class="coolawesomebuttons">
+    <p>Buttons that do cool things:</p>
+    <button id="dupBtn" @click="${this.cloneCard}>Duplicate Last Card</button>
+    <button class="colorBtn">Toggle Color</button>
+    <button class="txtBtn">Change Name</button>
+    <button class="deleteBtn">Delete</button>
+  </div>
+  <div class="wrapper">
+    <div class="container">
+    <img class="image" src ="https://i.gyazo.com/d1dad04e66b7b98caeb5d76b1f51401e.png"/>
+      <div class="header">
+        <h3>Dank Meme Collection Beware</h3>
+        <h4>Here's a homemade Chief Keef meme enjoy! P.S. Do not click the button, please DON'T.</h4>
+      </div>
+      <details class="details">
+        <Summary>Hit Songs</summary>
+        <div>
+          <ul>
+            <li>Love Sosa</li>
+            <li>Don't Like</li>
+            <li>Hate Being Sober</li>
+          </ul>
+        </div>
+      </details>
+    </div>  
+`
+;
   }
 }
 

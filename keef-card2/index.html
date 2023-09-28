@@ -7,134 +7,22 @@
   <meta name="Description" content="Put your description here.">
   <base href="/">
 
-<div class="coolawesomebuttons">
-  <p>Buttons that do cool things:</p>
-  <button class="dupBtn">Duplicate Last Card</button>
-  <button class="colorBtn">Toggle Color</button>
-  <button class="txtBtn">Change Name</button>
-  <button class="deleteBtn">Delete</button>
-</div>
-<div class="wrapper">
-  <div class="container">
-  <img class="image" src ="https://i.gyazo.com/d1dad04e66b7b98caeb5d76b1f51401e.png"/>
-    <div class="header">
-      <h3>Dank Meme Collection Beware</h3>
-      <h4>Here's a homemade Chief Keef meme enjoy! P.S. Do not click the button, please DON'T.</h4>
-    </div>
-    <details class="details">
-      <Summary>Hit Songs</summary>
-      <div>
-        <ul>
-          <li>Love Sosa</li>
-          <li>Don't Like</li>
-          <li>Hate Being Sober</li>
-        </ul>
-      </div>
-    </details>
-  </div>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>keef-card</keef-card2></title>
+</head>
+
+<body>
+  <keef-card2></keef-card2>
+
+  <script type="module" src="./src/keef-card2.js"></script>
+</body>
+
 </html>
-
-<style>
-  .coolawesomebuttons {
-  border: 3.5px solid;
-  background-color: blue;
-}
-.dupBtn:focus,.dupBtn:hover {
-  background-color: white;
-  color: blue;
-}
-.colorBtn:focus, .colorBtn:hover {
-  background-color: white;
-  color: blue;
-}
-.txtBtn:focus, .txtBtn:hover {
-  background-color: white;
-  color: blue;
-}
-.deleteBtn:focus, .deleteBtn:hover {
-  background-color: white;
-  color: blue;
-}
-
-.wrapper {
-  display: inline-block;
-  background-color: blue;
-  font-size: 24px;
-  padding: 100px;
-  text-align: center;
-  max-width: 400px;
-  margin: 20px auto;
-  border: 3.5px solid;
-}
-.wrapper img {
-  max-width: 100%;
-  height: auto;
-  width: 100%;
-  border: 3.5px solid;
-}
-
-@media only screen and (max-width: 1200px){
-  .wrapper {
-    background-color: pink;
-  }
-}
-@media only screen and (max-width: 600px) {
-   .wrapper {
-    background-color: purple;
-  }
-}
-@media only screen and (max-width: 425px){
-   .wrapper {
-    font-weight: normal;
-  }
-   .wrapper .header h2 {
-    font-size: 12px;
-  }
-   .wrapper .paragraph p {
-     font-size: 10px !important;
-  }
-    wrapper {
-        display: none;
- }
-}
-</style>
-
-<script>
-  // duplicate the 1st item 
-document.querySelector('.dupBtn').addEventListener('click', function(e) {
-  const itemToClone = document.querySelector('.wrapper').cloneNode(true);
-  document.body.appendChild(itemToClone);
-});
-
-// toggle color
-let isBlue = true;
-document.querySelector('.colorBtn').addEventListener('click', function(e) {
-  if(isBlue){
-    document.querySelector('.wrapper').style.backgroundColor = 'red';
-  } else {
-    document.querySelector('.wrapper').style.backgroundColor = 'blue';
-  }
-  isBlue = !isBlue;
-});
-
-// change name 
-document.querySelector('.txtBtn').addEventListener('click', function(e) {
-  let name = prompt("Rename the collection....");
-  if (name) {
-    document.querySelector('.wrapper h3').innerText = name;
-  }
-});
-
-// delete the last item
-document.querySelector('.deleteBtn').addEventListener('click', function(e) {
-  let wantsTo = confirm("Are you sure?");
-  if (wantsTo) {
-    if (document.querySelector('.wrapper:last-child') !== document.querySelector('.wrapper')) {
-      document.querySelector('.wrapper:last-child').remove();      
-    }
-    else {
-      alert("YOU CAN NOT DELETE KEEF!!!!");
-    }
-  }
-});
-</script>
