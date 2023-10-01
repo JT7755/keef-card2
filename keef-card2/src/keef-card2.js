@@ -1,20 +1,26 @@
 import { LitElement, html, css } from 'lit';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
-
-class KeefCard2 extends LitElement {
-  static properties = {
-    header: { type: String },
+export class KeefCard2 extends LitElement {
+  static get properties () {
+    return {
+      name: {
+        type: String,
+        Reflect: true
+      },
+      position: {
+        type: String,
+      }
+    }
   }
 
-  static styles = css`
 
+  static styles = css`
   .coolawesomebuttons {
     border: 3.5px solid;
     background-color: blue;
   }
-  #dupBtn:hover, #dupBtn:focus {
-    background-color: black;
+  .dupBtn:focus,.dupBtn:hover {
+    background-color: white;
     color: blue;
   }
   .colorBtn:focus, .colorBtn:hover {
@@ -45,7 +51,6 @@ class KeefCard2 extends LitElement {
     width: 100%;
     border: 3.5px solid;
   }
-  
   @media only screen and (max-width: 1200px){
     .wrapper {
       background-color: pink;
@@ -69,65 +74,23 @@ class KeefCard2 extends LitElement {
       wrapper {
           display: none;
    }
-  }`
-  ;
+  }
+  `;
 
   constructor() {
     super();
-    this.header = 'My app';
-  }
-
-  firstUpdated(){
-    const titleBtn = this.shadowRoot.querySelector('.txtBtn');
-    const deleteBtn = this.shadowRoot.querySelector('.deleteBtn');
-    const colorBtn = this.shadowRoot.querySelector('.colorBtn');
-    const cardTitle = this.shadowRoot.querySelector('.header');
-    const card = this.shadowRoot.querySelector('');
-    const clone = card.cloneNode(true);
-    const cards = this.shadowRoot.querySelector('.wrapper');
-    const details = this.shadowRoot.querySelector('');
-    const cardImage = this.shadowRoot.querySelector('img');
-    const cardClone2 = this.shadowRoot.querySelector('.container');
-
-    titleBtn.addEventListener('click', (e) => {
-      cardTitle.innerHTML = "Chief Keef";
-    });
-
-    deleteBtn.addEventListener('click', (e) => {
-      cards.removeChild(cardClone2);
-    });
-    colorBtn.addEventListener('click', (e) => {
-
-    })
-
-  }
-
-  colorChange(){
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    return randomColor;
-  }
-
-  cloneCard(e){
-    const card = this.shadowRoot.querySelector('.wrapper');
-    const clone = card.cloneNode(true);
-    this.shadowRoot.querySelector('.wrapper').appendChild(clone);
+    this.name = "Dank Meme Collection Beware";
+    this.position = "Here's a homemade Chief Keef meme enjoy! P.S. Do not click the button, please DON'T."
   }
 
   render() {
     return html`
-  <div class="coolawesomebuttons">
-    <p>Buttons that do cool things:</p>
-    <button id="dupBtn">Duplicate Last Card</button>
-    <button class="colorBtn">Toggle Color</button>
-    <button class="txtBtn">Change Name</button>
-    <button class="deleteBtn">Delete</button>
-  </div>
   <div class="wrapper">
     <div class="container">
     <img class="image" src ="https://i.gyazo.com/d1dad04e66b7b98caeb5d76b1f51401e.png"/>
       <div class="header">
-        <h3>Dank Meme Collection Beware</h3>
-        <h4>Here's a homemade Chief Keef meme enjoy! P.S. Do not click the button, please DON'T.</h4>
+        <h3>${this.name}</h3>
+        <h4>${this.position}</h4>
       </div>
       <details class="details">
         <Summary>Hit Songs</summary>
@@ -139,9 +102,10 @@ class KeefCard2 extends LitElement {
           </ul>
         </div>
       </details>
-    </div>  
-`
-;
+    </div>
+  </div> 
+`;
+
   }
 }
 

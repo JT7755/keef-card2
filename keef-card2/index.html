@@ -16,12 +16,63 @@
       background-color: #ededed;
     }
   </style>
-  <title>keef-card</keef-card2></title>
+  <title>keef-card</title>
 </head>
 
 <body>
-  <keef-card2></keef-card2>
+  <div class="coolawesomebuttons">
+    <p>Buttons that do cool things:</p>
+    <button class="dupBtn">Duplicate Last Card</button>
+    <button class="colorBtn">Toggle Color</button>
+    <button class="txtBtn">Change Name</button>
+    <button class="deleteBtn">Delete</button>
+  </div>
+  <div id="app">
+    <keef-card2></keef-card2>
+  </div>
 
   <script type="module" src="./src/keef-card2.js"></script>
+  <script>
+
+  // duplicate the 1st item 
+document.querySelector('.dupBtn').addEventListener('click', function(e) {
+  const itemToClone = document.querySelector('keef-card2').cloneNode();
+  document.querySelector('#app').appendChild(itemToClone);
+});
+
+// toggle color
+let isBlue = true;
+document.querySelector('.colorBtn').addEventListener('click', function(e) {
+  if(isBlue){
+    document.querySelector('keef_card2').shadowRoot.style.backgroundColor = 'red';
+  } else {
+    document.querySelector('keef_card2').shadowRoot.style.backgroundColor = 'blue';
+  }
+  isBlue = !isBlue;
+});
+
+// change name 
+document.querySelector('.txtBtn').addEventListener('click', function(e) {
+  let name = prompt("Rename the collection....");
+  if (name) {
+    document.querySelector('keef-card2').name = name;
+  }
+});
+
+// delete the last item
+document.querySelector('.deleteBtn').addEventListener('click', function(e) {
+  let wantsTo = confirm("Are you sure?");
+  if (wantsTo) {
+    if (document.querySelector('#app :last-child') !== document.querySelector('#app')) {
+      document.querySelector('#app :last-child').remove();      
+    }
+    else {
+      alert("YOU CAN NOT DELETE KEEF!!!!");
+    }
+  }
+});
+  </script>
+
 </body>
+
 </html>
