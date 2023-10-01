@@ -8,12 +8,13 @@ class KeefCard2 extends LitElement {
   }
 
   static styles = css`
+
   .coolawesomebuttons {
     border: 3.5px solid;
     background-color: blue;
   }
-  .dupBtn:focus,.dupBtn:hover {
-    background-color: white;
+  #dupBtn:hover, #dupBtn:focus {
+    background-color: black;
     color: blue;
   }
   .colorBtn:focus, .colorBtn:hover {
@@ -28,7 +29,6 @@ class KeefCard2 extends LitElement {
     background-color: white;
     color: blue;
   }
-  
   .wrapper {
     display: inline-block;
     background-color: blue;
@@ -89,15 +89,17 @@ class KeefCard2 extends LitElement {
     const cardImage = this.shadowRoot.querySelector('img');
     const cardClone2 = this.shadowRoot.querySelector('.container');
 
-    titleBtn.addEventListener('click', () => {
+    titleBtn.addEventListener('click', (e) => {
       cardTitle.innerHTML = "Chief Keef";
     });
 
-    deleteBtn.addEventListener('click', () => {
+    deleteBtn.addEventListener('click', (e) => {
       cards.removeChild(cardClone2);
     });
+    colorBtn.addEventListener('click', (e) => {
 
-    
+    })
+
   }
 
   colorChange(){
@@ -113,9 +115,9 @@ class KeefCard2 extends LitElement {
 
   render() {
     return html`
-    <div class="coolawesomebuttons">
+  <div class="coolawesomebuttons">
     <p>Buttons that do cool things:</p>
-    <button id="dupBtn" @click="${this.cloneCard}>Duplicate Last Card</button>
+    <button id="dupBtn">Duplicate Last Card</button>
     <button class="colorBtn">Toggle Color</button>
     <button class="txtBtn">Change Name</button>
     <button class="deleteBtn">Delete</button>
